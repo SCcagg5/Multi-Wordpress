@@ -19,7 +19,6 @@ services:
     build: .
     depends_on:
       - db
-      - cp
     restart: always
     volumes:
       - ./theme:/var/www/html/wp-content/themes:rw
