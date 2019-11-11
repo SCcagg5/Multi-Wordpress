@@ -78,7 +78,7 @@ add () {
 }
 
 
-install ()
+install_all ()
 {
 apt-get install curl git -y > /dev/null
 git clone https://github.com/SCcagg5/Multi-Wordpress ~/sources_wp_multi > /dev/null
@@ -104,6 +104,10 @@ add_wp ()
       echo "VIRTUAL_HOST=$domain" >> ~/$domain/.env
       cd ~/$domain
       docker-compose up -d
+      chown www-data plugin/ -R
+      chown www-data theme/ -R
+      chown www-data /srv/www/$domain/html -R
+      echo "php_value memory_limit 300M\nphp_value post_max_size 300M\nphp_value upload_max_filesize 300M" >> /srv/www/$domain/html/.htaccess
       cd -
     fi
   done
@@ -112,8 +116,8 @@ add_wp ()
 
 check_arg "$@"
 if [ "$new" = "on" ]
-  then
-    install
+then
+    install_all
 fi
 add_wp "$@"
 rm -rf ~/sources_wp_multi
