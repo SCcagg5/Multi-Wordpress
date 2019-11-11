@@ -99,7 +99,7 @@ add_wp ()
     domain=$(echo $arg | grep -P '(?=^.{4,253}$)(^(?:[a-zA-Z0-9](?:(?:[a-zA-Z0-9\-]){0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$)')
     if [[ $domain != "" ]];
     then
-      cp ~/sources_wp_multi/project/base_wp ~/$domain -r
+      cp ~/sources_wp_multi/project/base_wp/ ~/$domain -r
       cp ~/$domain/sample.env ~/$domain/.env
       echo "VIRTUAL_HOST=$domain" >> ~/$domain/.env
       cd ~/$domain
