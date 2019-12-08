@@ -21,8 +21,6 @@ services:
       - db
     restart: always
     volumes:
-      - ./theme:/var/www/html/wp-content/themes:rw
-      - ./plugin:/var/www/html/wp-content/plugins:rw
       - /srv/www/${VIRTUAL_HOST}/html:/var/www/html:rw
     environment:
       WORDPRESS_DB_HOST: $DB_CONTAINER
